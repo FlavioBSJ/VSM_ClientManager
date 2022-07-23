@@ -1,0 +1,77 @@
+Requisitos da aplicação
+
+Cliente
+    Modelo:
+        Nome: VARCHAR(255);
+        CPF: VARCHAR(11);
+        Email: VARCHAR(100);
+        Telefone: VARCHAR(32);
+        Endereco: Endereco;
+        Active: Boolean;
+-------------------------------------------
+Endereco:
+    Modelo:
+        Rua: VARCHAR(255);
+        Numero: VARCHAR(16);
+        Bairro: VARCHAR(255);
+        CEP: VARCHAR(8);
+        Cidade: Cidade;
+-------------------------------------------
+Cidade:
+    Modelo:
+      Cidade: VARCHAR(64);
+      UF: VARCHAR(64);
+-------------------------------------------
+Funções da aplicação:
+    Cliente:
+        Criação de Cliente - POST - Requisitos: DONE!
+            [X] O nome do cliente é obrigatório;
+            [X] O CPF do cliente é obrigatório;
+            [X] O Cliente pode ou não possuir um endereço;
+            [X] O Cliente pode ou não possuir um telefone;
+            [X] O Cliente pode ou não possuir um email;
+            [X] O Cliente pode ou nao possuir a flag ativo, caso nao possua presuma como true;
+            [X] Não pode existir mais de um cliente com o mesmo CPF;
+            [X] O endereco do cliente deve ser salvo;
+            [X] O CPF do cliente precisa estar em um formato válido;
+            [X] O email do cliente precisa estar no formato correto;
+            [] O telefone do cliente precisa estar no formato "(xx)xxxxx-xxxx";
+        Procurar Cliente - GET - Requisitos: DONE!
+            [X] - Deve ser possível procuar um cliente em específico, utilizando-se de um ou mais dados (busca por example);
+            [X] - Ao não passar nada, retornar todos os clientes ativados;
+        Editar Cliente - PUT - Requisitos: DONE!
+            [X] - Passar o ID do cliente a ser editado é obrigatorio;
+            [X] - Não pode ser possível editar o CPF do cliente de forma que haja colisão;
+            [X] - Se o cliente não existir, tente criá-lo no banco de dados;
+        Ativar/Desativar Cliente - POST com Query Params - Requisitos: OBS - REDUNTANTE (Caso de uso ja coberto no patch) DONE!
+            [X] - O ID do cliente a ser deletado deve ser passado na rota;
+            [X] - Se o estado nao for informado, inferir como true;
+            [X] - Caso o cliente seja encontrado, retornar o cliente com o estado atualizado no response;
+            [X] - Caso o cliente não seja encontrado, reportar a falha;
+        Rota de Integracao - GET com Query Params - Requisitos: OBS - REDUNTANTE (Caso de uso ja coberto na rota de procurar clientes) DONE!
+            [X] - Ao passar um CPF, o sistema deve retornar os dados do cliente com aquele CPF
+    Endereço:
+        Criação de Endereço - SERVICE-BASED - Requisitos: DONE!
+            [X] - Se a Cidade informada já existir, "linkar" cidade ao endereço;
+            [X] - Se a Cidade não existir, criar Cidade;
+        Procurar Endereço - GET - Requisitos: DONE!
+            [X] - Caso nenhum dado seja passado, trazer todos os endereços;
+            [X] - Deve ser possível procuar um Endereço em específico, utilizando-se de um ou mais dados (busca por example);
+        Editar Endereço - PUT - Requisitos: DONE!
+            [X] - Passar o ID do endereço a ser editado é obrigatorio;
+            [X] - Se o Endereço não existir, tente criá-lo no banco de dados;
+    Cidade:
+        Criação de Cidade: POST - Requisitos: DONE!
+            [X] - Todos os campos são obrigatórios;
+            [X] - Não deve ser possível criar cidades repetidas (com mesmo nome e no memso estado);
+        Procurar Cidade - GET - Requisitos: DONE!
+            [X] - Se nenhum campo for passalsdo, trazer todas as Cidades;
+            [X] - Deve ser possível procuar uma Cidade em específico, utilizando-se de um ou mais dados (busca por example);
+            [X] - Deve ser possível procuar Cidades em uma certa UF (busca por example);
+        Editar Cidade - PUT - Requisitos: DONE!
+            [X] - Obrigatorio passar o ID da cidade a ser editada;
+            [X] - Nao podem haver colisoes ao editar uma cidade;
+
+
+
+
