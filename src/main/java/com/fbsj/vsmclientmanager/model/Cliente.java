@@ -30,15 +30,16 @@ public class Cliente{
         this.ativo = ativo;
     }
 
-    @NotBlank
+    @NotBlank(message = "O nome e obrigatorio.")
     private String nome;
 
-    @CPF
+    @CPF(message = "O cpf informado e invalido.")
     private String cpf;
 
-    @Email
+    @Email(message = "O Email informado e invalido.")
     private String email;
 
+    @Pattern(message = "O numero de telefone precisa estar no formato (xx)xxxxx-xxxx.", regexp = "^\\([1-9]{2}\\)(9[1-9])[0-9]{3}\\-[0-9]{4}$")
     private String telefone;
 
     @OneToOne
